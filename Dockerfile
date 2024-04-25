@@ -4,17 +4,23 @@ LABEL maintainer="Ipolitas"
 ENV PYTHONUNBUFFERED 1
 
 COPY ./requirements.txt /tmp/requirements.txt
+COPY ./requirements.dev.txt /tmp/requirements.dev.txt
 COPY ./app /app
 WORKDIR /app
 EXPOSE 8000
 
 # single RUN for efficiency reasons
+ARG DEV=false
 # create venv
 RUN python -m venv /py && \
 # upgrade pip inside venv
     /py/bin/pip install --upgrade pip && \
 # install specified requirements
     /py/bin/pip install -r /tmp/requirements.txt && \
+# if DEV is set to true, install dev requirements
+    if [ "$DEV" = "true" ]; \
+        then /py/bin/pip install -r /tmp/requirements.dev.txt ; \
+    fi && \
 # remove "tmp" directory since we no longer need it
     rm -rf /tmp && \
 # adds new user to our image (otherwise we would default to root user, and if container would become compromised - attacked would have full access to container)
