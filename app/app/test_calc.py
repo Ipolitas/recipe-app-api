@@ -1,8 +1,6 @@
 """
 Sample tests
 """
-import pytest
-
 from app import calc
 
 
