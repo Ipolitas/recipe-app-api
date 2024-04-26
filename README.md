@@ -11,7 +11,7 @@
 ```docker compose up```
 
 ### Commands to use
-To run django command inside docker, the command has to be included in like so:
+To run django command inside docker, the command has to be included in like so:<br />
 ```docker-compose run --rm app sh -c "python manage.py my_command"```
 
 ### Useful commands:
