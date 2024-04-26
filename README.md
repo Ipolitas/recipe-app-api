@@ -21,5 +21,11 @@ To run django command inside docker, the command has to be included in like so:<
 ```docker-compose run --rm app sh -c "flake8"```
 - Run both:
 ```docker-compose run --rm app sh -c "pytest && flake8"```
-- Make migration:
-```docker-compose run --rm app sh -c "XXXXXXXX"```
+- Make migrations:
+```docker-compose run --rm app sh -c "python manage.py makemigrations"```
+- Apply migrations:
+```docker-compose run --rm app sh -c "python manage.py wait_for_db && python manage.py migrate"```
+- Clear the volume (wipe the local database):
+```docker volume ls``` - to list all volumes<br />
+```docker-compose down``` - to clear any container that would be using volume<br />
+```docker volume rm recipe-app-api_dev-db-data``` - removes the volume
