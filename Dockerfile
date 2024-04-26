@@ -15,6 +15,10 @@ ARG DEV=false
 RUN python -m venv /py && \
 # upgrade pip inside venv
     /py/bin/pip install --upgrade pip && \
+# install postgresql client and build dependencies
+    apk add --update --no-cache postgresql-client && \
+    apk add --update --no-cache --virtual .tmp-build-deps \
+        build-base postgresql-dev musl-dev && \
 # install specified requirements
     /py/bin/pip install -r /tmp/requirements.txt && \
 # if DEV is set to true, install dev requirements
@@ -23,6 +27,8 @@ RUN python -m venv /py && \
     fi && \
 # remove "tmp" directory since we no longer need it
     rm -rf /tmp && \
+# remove build dependencies
+    apk del .tmp-build-deps && \
 # adds new user to our image (otherwise we would default to root user, and if container would become compromised - attacked would have full access to container)
     adduser \
     # no password for simplicity
