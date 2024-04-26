@@ -19,7 +19,7 @@ To run django command inside docker, the command has to be included in like so:<
 ```docker-compose run --rm app sh -c "pytest"```
 - Run lint:
 ```docker-compose run --rm app sh -c "flake8"```
-- Run both
+- Run both:
 ```docker-compose run --rm app sh -c "pytest && flake8"```
 - Make migration:
 ```docker-compose run --rm app sh -c "XXXXXXXX"```
