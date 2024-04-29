@@ -8,8 +8,8 @@ from django.contrib.auth import get_user_model
 
 @pytest.fixture()
 def client():
-    from django.test import Client
-    return Client()
+    from rest_framework.test import APIClient
+    return APIClient()
 
 
 @pytest.fixture()
@@ -18,7 +18,6 @@ def admin_user(client):
         email='admin@example.com',
         password='testpass123',
     )
-    client.force_login(admin_user)
     yield admin_user
 
 
@@ -29,5 +28,4 @@ def test_user(client):
         password='testpass123',
         name='Test User',
     )
-    client.force_login(test_user)
     yield test_user

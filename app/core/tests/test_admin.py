@@ -10,9 +10,11 @@ class TestUserAdmin:
 
     @pytest.fixture(autouse=True)
     def setup(self, client, test_user, admin_user):
-        self.client = client
         self.test_user = test_user
         self.admin_user = admin_user
+
+        client.force_login(self.admin_user)
+        self.client = client
 
     def test_users_list(self):
         """Test that users are listed on the user page."""
