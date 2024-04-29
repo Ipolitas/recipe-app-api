@@ -29,3 +29,5 @@ To run django command inside docker, the command has to be included in like so:<
 ```docker volume ls``` - to list all volumes<br />
 ```docker-compose down``` - to clear any container that would be using volume<br />
 ```docker volume rm recipe-app-api_dev-db-data``` - removes the volume
+- Create scaffold for new app:
+```docker-compose run --rm app sh -c "python manage.py startapp my_app```
