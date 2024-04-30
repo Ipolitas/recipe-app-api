@@ -1,5 +1,5 @@
 """
-Database models for the core app.
+Database model for User.
 """
 from django.db import models
 from django.contrib.auth.models import (

@@ -29,3 +29,13 @@ def test_user(client):
         name='Test User',
     )
     yield test_user
+
+
+@pytest.fixture()
+def test_user_2(client):
+    test_user_2 = get_user_model().objects.create_user(
+        email='user2@example.com',
+        password='testpass123',
+        name='Test User 2',
+    )
+    yield test_user_2
